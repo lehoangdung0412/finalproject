@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    hostname: postgres
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: k533105d
+
+
+  web:
+    build: .
+    command: pipenv run ./manage.py migrate
+    command: pipenv run ./manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: lehoangdung.hcmus@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: k533105d
+    volumes:
+      - /var/lib/pgadmin:/root/.pgadmin
+    ports:
+      - "5050:80"
+    restart: always
+
+volumes:
+  postgres_data:
