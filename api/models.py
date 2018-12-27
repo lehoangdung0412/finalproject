@@ -8,8 +8,8 @@ class Customer(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
     username = models.CharField(max_length=20)
-    password = models.CharField(max_lenght=20)
-    image = models.ImageField()
+    password = models.CharField(max_length=20)
+    image = models.CharField(max_length=255)
     registered = models.BooleanField()
     facebook = models.CharField(max_length=50, null=True, blank=True)
     google = models.CharField(max_length=50, null=True, blank=True)
@@ -17,7 +17,7 @@ class Customer(models.Model):
     # updated_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    	ordering = ('created_date')
+        ordering = ('created_date',)
 
 
 class City(models.Model):
@@ -48,7 +48,7 @@ class Category(models.Model):
     # updated_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    	ordering = ('created_date')
+        ordering = ('created_date',)
 
 
 class Supplier(models.Model):
@@ -72,11 +72,11 @@ class Product(models.Model):
     # updated_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    	ordering = ('created_date')
+        ordering = ('created_date',)
 
 
 class COD(models.Model):
-    customer_id = models.ForeignKey(on_delete=models.CASCADE)
+    customer_id = models.ForeignKey('Customer', on_delete=models.CASCADE)
     description = models.TextField()
     note = models.TextField()
 
@@ -87,13 +87,11 @@ class MasterCard(models.Model):
     date_expired = models.DateField(auto_now=True)
     
 
-
 class ATMCard(models.Model):
     bank = models.CharField(max_length=100)
     name = models.CharField(max_length=50)
     cardID = models.CharField(max_length=50)
     date_expired = models.DateField(auto_now=True)
-    
 
 
 class Payment(models.Model):
@@ -110,7 +108,7 @@ class Shipper(models.Model):
     # updated_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    	ordering = ('created_date')
+        ordering = ('created_date',)
 
 
 class Delivery(models.Model):
@@ -122,7 +120,7 @@ class Delivery(models.Model):
     # updated_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    	ordering = ('created_date')
+        ordering = ('created_date',)
 
 
 class Order(models.Model):
@@ -137,7 +135,7 @@ class Order(models.Model):
     # updated_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    	ordering = ('created_date')
+        ordering = ('created_date',)
 
 
 class OrderItem(models.Model):
@@ -149,7 +147,7 @@ class OrderItem(models.Model):
     # updated_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    	ordering = ('created_date')
+        ordering = ('created_date',)
 
 
 # class Branch(models.Model):
