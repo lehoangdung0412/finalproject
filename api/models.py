@@ -51,18 +51,18 @@ class Category(models.Model):
         ordering = ('created_date',)
 
 
-class Supplier(models.Model):
-    company_name = models.CharField(max_length=255)
-    contact_name = models.CharField(max_length=50)
-    address = models.CharField(max_length=255)
-    postcode = models.CharField(max_length=10)
-    phone = models.CharField(max_length=20)
-    email = models.EmailField()
+# class Supplier(models.Model):
+#     company_name = models.CharField(max_length=255)
+#     contact_name = models.CharField(max_length=50)
+#     address = models.CharField(max_length=255)
+#     postcode = models.CharField(max_length=10)
+#     phone = models.CharField(max_length=20)
+#     email = models.EmailField()
 
 
 class Product(models.Model):
     category_id = models.ForeignKey('Category', on_delete=models.CASCADE)
-    supplier_id = models.ForeignKey('Supplier', on_delete=models.CASCADE)
+    # supplier_id = models.ForeignKey('Supplier', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField()
     image = models.CharField(max_length=255)
